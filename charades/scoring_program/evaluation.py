@@ -19,12 +19,12 @@ def write_score_file(scores, out_path):
 
 def main():
     _, input_dir, output_dir = sys.argv
-    # submission_path = os.path.join(input_dir, 'res', 'charades_loc_sampl.txt')
-    submission_path = os.path.join(input_dir, 'res', 'charades_class_sampl.txt')
+    submission_path_loc = os.path.join(input_dir, 'res', 'charades_loc_sampl.txt')
+    submission_path_class = os.path.join(input_dir, 'res', 'charades_class_sampl.txt')
     data_path = os.path.join(input_dir, 'ref', 'Charades_v1_test.csv')
     submission_scores = {}
-    # submission_scores['Localization'] = evaluate_submission(data_path, submission_path, LocalizationEvaluator)
-    submission_scores['Classification'] = evaluate_submission(data_path, submission_path, ClassificationEvaluator)
+    submission_scores['temporal_segmentation'] = evaluate_submission(data_path, submission_path_loc, LocalizationEvaluator)
+    submission_scores['action_recognition'] = evaluate_submission(data_path, submission_path_class, ClassificationEvaluator)
     write_score_file(submission_scores, output_dir)
 
 

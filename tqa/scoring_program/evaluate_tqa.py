@@ -19,7 +19,7 @@ class Evaluator(BaseEvaluator):
     def __init__(self, data_path):
         super(Evaluator, self).__init__(data_path)
         self.dataset = None
-        self.sub_scores = ['overall', 'text', 'diagram']
+        self.sub_scores = ['overall', 'text', 'diagram', 'overall_text']
 
     def evaluate_submission(self, predicted_answers):
         if isinstance(predicted_answers, str):
@@ -34,7 +34,7 @@ class Evaluator(BaseEvaluator):
         overall_accuracy = n_correct['overall'] / n_total['overall']
         dq_accuracy = n_correct['DQ'] / n_total['DQ']
         ndq_accuracy = n_correct['NDQ'] / n_total['NDQ']
-        scores = {k: v for k, v in zip(self.sub_scores, [overall_accuracy, dq_accuracy, ndq_accuracy])}
+        scores = {k: v for k, v in zip(self.sub_scores, [overall_accuracy, ndq_accuracy, dq_accuracy, ndq_accuracy])}
         return scores
 
     def count_correct(self, predicted_answers):

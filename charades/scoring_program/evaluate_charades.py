@@ -57,7 +57,7 @@ class CharadesEvaluator(object):
         self.build_aligned_submission_array()
 
         mean_ap, weighted_ap = self.compute_scores()
-        return {"MAP": mean_ap, "WAP": weighted_ap}
+        return mean_ap
 
 
 class LocalizationEvaluator(CharadesEvaluator):

@@ -1,7 +1,8 @@
 title: Action Recognition Challenge - CVPR 2017 Workshop
 description: Action recognition competition using Charades Dataset
-image: logo.jpg
+image: ai2_logo.png
 has_registration: True
+allow_teams: True
 html:
     overview: overview.html
     data: data.html
@@ -14,20 +15,23 @@ phases:
         start_date: 2017-01-31
         max_submissions: 100
         scoring_program: scoring_program.zip
-        reference_data: reference_data.zip
+        reference_data: val_data.zip
 leaderboard:
     leaderboards:
-        RESULTS: &RESULTS
-            label: Results
+        Action Recognition: &Classification
+            label: Action Recognition
+            rank: 1
+        Temporal Segmentation: &Localization
+            label: Temporal Segmentation
             rank: 1
     columns:
         action_recognition:
-            leaderboard: *RESULTS
-            label: action_recog_mAP
+            leaderboard: *Classification
+            label:  mAP
             rank: 1
-            numeric_format: 6
+            numeric_format: 4
         temporal_segmentation:
-            leaderboard: *RESULTS
-            label: temporal_seg_mAP
+            leaderboard: *Localization
+            label: mAP
             rank: 1
-            numeric_format: 6
+            numeric_format: 4
