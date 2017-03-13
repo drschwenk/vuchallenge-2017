@@ -14,6 +14,7 @@ phases:
         label: "Development"
         start_date: 2017-01-31
         max_submissions: 100
+        max_submissions_per_day: 20
         scoring_program: scoring_program.zip
         reference_data: val_data.zip
 leaderboard:
