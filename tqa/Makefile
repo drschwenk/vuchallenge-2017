@@ -1,5 +1,5 @@
-competition/scoring_program.zip:
-	cd scoring_program && zip ../competition/scoring_program.zip * && cd ..
+competition/scoring.zip:
+	cd scoring && zip ../competition/scoring.zip * && cd ..
 
 competition/val_data.zip:
 	cd dev_data && zip ../competition/dev_data.zip * && cd ..
@@ -7,7 +7,7 @@ competition/val_data.zip:
 competition/test_data.zip:
 	cd test_data && zip ../competition/test_data.zip * && cd ..
 
-competition.zip: competition/scoring_program.zip competition/dev_data.zip competition/test_data.zip
+competition.zip: competition/scoring.zip competition/dev_data.zip competition/test_data.zip
 	cd competition && zip ../competition.zip * && cd ..
 
 submission.zip:
@@ -20,7 +20,7 @@ clean:
 	rm competition.zip
 
 all:
-	cd scoring_program && zip ../competition/scoring_program.zip * && cd ..
+	cd scoring && zip -r ../competition/scoring.zip * && cd ..
 	cd val_data && zip ../competition/val_data.zip * && cd ..
 	cd test_data && zip ../competition/test_data.zip * && cd ..
 	cd html && cp * ../competition/
