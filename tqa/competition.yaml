@@ -3,6 +3,7 @@ description: Answer science questions from textual and visual source material
 image: ai2_logo.png
 has_registration: True
 allow_teams: True
+end_date: 2017-07-01
 html:
     overview: overview.html
     evaluation: evaluation.html
@@ -11,8 +12,8 @@ html:
 phases:
     1:
         phasenumber: 1
-        label: "Modeling"
-        start_date: 2017-02-01
+        label: "Development"
+        start_date: 2017-03-27
         max_submissions: 100
         max_submissions_per_day: 20
         scoring_program: scoring.zip
@@ -20,9 +21,9 @@ phases:
     2:
         phasenumber: 2
         label: "Testing"
-        start_date: 2017-07-01
+        start_date: 2017-06-26
         max_submissions: 2
-        scoring_program: scoring_program.zip
+        scoring_program: scoring.zip
         reference_data: test_data.zip
         leaderboard_management_mode: hide_results
 leaderboard:

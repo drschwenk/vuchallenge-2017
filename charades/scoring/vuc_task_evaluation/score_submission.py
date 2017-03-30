@@ -1,0 +1,1 @@
+../../../../vuc_task_evaluation/score_submission.py

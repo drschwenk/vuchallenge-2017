@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys
-from task_evaluation.score_submission import score
+from vuc_task_evaluation.score_submission import score
 
 
 def main():

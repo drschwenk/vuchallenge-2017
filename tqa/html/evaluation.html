@@ -1,24 +1,30 @@
 <H3>Evaluation Criteria</H3>
-The submission are evaluated separately on the competition's two subtasks.
+For the textbook question answering competition, accuracy is used as the evaluation metric.
+Separate leader boards are kept for performance on text-only questions, as well as the complete dataset.
+<br>
+<H4>Submission Format</H4>
 <p>
-	&nbsp;
+	Participants should submit a zip file containing a single json file of this form:
 </p>
-<H4>Text and Diagram Question Answering</H4>
+<pre>
+    {
+	"Question_ID": "letter corresponding to answer choice"
+    }
+</pre>
 <p>
-	For this task, the evaluation server requires a json file to be submitted in the following form:
+	where the Question_ID is the global key of the question being answered, and the value is a lowercase letter
+	denoting one of the multiple choice answer options for that question (e.g. a, b, c, ... ).
+	The filename should contain the string "tqa" to be recognized by the evaluation server, but it is otherwise flexible.
 </p>
 <p>
-	{
-</p>
-<p>
-&nbsp;&nbsp;	"Question_ID": "letter corresponding to answer choice"
-</p>
-<p>
-	}
-</p>
 
+</p>
+<br>
 <H4>Text only Question Answering</H4>
 <p>
-	The submission and evaluation guidelines are the same as the full task above. For this task, only performance on
-	the text questions is measured. Questions requiring a diagram are not scored, and can be left out of the submission file.
+	Evaluation and submission for this subtask are identical to the full task, except that only the text
+	questions are scored. Questions requiring a diagram are not scored, and can be left out of the submission file
+	if you would like to participate only in this subtask.
+	Questions are separated by type in the dataset (nested under diagramQuestions and nonDiagramQuestions), and they also
+	have global id prefixes to indicate an associated diagram (DQ_* and NDQ_*).
 </p>
