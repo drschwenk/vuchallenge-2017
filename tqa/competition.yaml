@@ -28,35 +28,25 @@ phases:
         leaderboard_management_mode: hide_results
 leaderboard:
     leaderboards:
-        Overall: &Overall
-            label: Overall
+        Diagram: &Diagram_Questions
+            label: Diagram Questions
             rank: 1
-        Text Only: &Text_Only
-            label: Text Questions Only
+        Text: &Text_Questions
+            label: Text Questions
             rank: 2
     column_groups:
        QT: &QT
         label: Question Types
     columns:
-        text:
-            leaderboard: *Overall
-            column_group: *QT
-            label: text only accuracy
-            rank: 1
-            numeric_format: 4
         diagram:
-            leaderboard: *Overall
+            leaderboard: *Diagram_Questions
             column_group: *QT
-            label: diagram only accuracy
+            label: diagram question accuracy
             rank: 1
             numeric_format: 4
-        overall:
-            leaderboard: *Overall
-            label: overall accuracy
-            rank: 1
-            numeric_format: 4
-        overall_text:
-            leaderboard: *Text_Only
-            label: overall text only accuracy
+        text:
+            leaderboard: *Text_Questions
+            column_group: *QT
+            label: text question accuracy
             rank: 1
             numeric_format: 4
