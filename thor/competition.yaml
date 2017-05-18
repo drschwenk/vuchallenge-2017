@@ -1,0 +1,39 @@
+title: THOR Challenge - CVPR 2017 Workshop
+description: Navigate and find objects in a virtual environment
+image: ai2_logo.png
+has_registration: True
+allow_teams: True
+end_date: 2017-07-01
+html:
+    overview: overview.html
+    data: data.html
+    evaluation: evaluation.html
+    terms: terms_and_conditions.html
+phases:
+    1:
+        phasenumber: 1
+        label: "Development"
+        start_date: 2017-03-27
+        max_submissions: 100
+        max_submissions_per_day: 20
+        scoring_program: scoring.zip
+        reference_data: val_data.zip
+    2:
+        phasenumber: 2
+        label: "Testing"
+        start_date: 2017-06-26
+        max_submissions: 2
+        scoring_program: scoring.zip
+        reference_data: test_data.zip
+        leaderboard_management_mode: hide_results
+leaderboard:
+    leaderboards:
+        Discrete Navigation: &Discrete
+            label: Discrete Navigation
+            rank: 1
+    columns:
+        Difference:
+            leaderboard: *Discrete
+            label: tbd
+            rank: 1
+            numeric_format: 4

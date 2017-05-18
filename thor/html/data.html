@@ -1,0 +1,81 @@
+<h2>Installation</h2>
+<br>
+<p>
+	The framework for the challenge consists of three parts:
+<ul>
+	<li>THOR: Game engine that hosts the scenes (Linux/OSX)
+	<li>Robosims: Python framework which interacts with the game engine
+	<li>Targets: zip file containing a JSON targets file as well as target images
+</ul>
+
+OSX Installation
+<pre><code>pip install https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/robosims-0.0.6-py2.py3-none-any.whl
+wget https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/thor-201705011400-OSXIntel64.zip
+wget https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/thor-challenge-targets.zip
+unzip thor-challenge-targets.zip
+unzip thor-201705011400-OSXIntel64.zip
+</code></pre>
+
+Linux Installation
+<pre><code>To run on Linux you must have an X server running that has a GLX module enabled.
+pip install https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/robosims-0.0.6-py2.py3-none-any.whl
+wget https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/thor-201705011400-Linux64.zip
+wget https://s3-us-west-2.amazonaws.com/ai2-vision-robosims/builds/thor-challenge-targets.zip
+unzip thor-challenge-targets.zip
+unzip thor-201705011400-Linux64.zip
+</code></pre>
+<h2>Robosims Example - Training</h2>
+<br>
+<pre><code>
+#!/usr/bin/env python
+import robosims
+import json
+env = robosims.controller.ChallengeController(
+    # Use unity_path=thor-201705011400-OSXIntel64.app/Contents/MacOS/thor-201705011400-OSXIntel64 for OSX
+    unity_path='projects/thor-201705011400-Linux64'
+    x_display="0.0" # this parameter is ignored on OSX, but you must set this to the appropriate display on Linux
+)
+env.start()
+with open("thor-challenge-targets/targets-train.json") as f:
+    t = json.loads(f.read())
+    for target in t:
+        env.initialize_target(target)
+        # Possible actions are: MoveLeft, MoveRight, MoveAhead, MoveBack, LookUp, LookDown, RotateRight, RotateLeft
+        event = env.step(action=dict(action='MoveLeft'))
+
+        # path to the target image (e.g. apple, lettuce, keychain, etc.)
+        print(target['targetImage'])
+
+        # target_found() returns True/False if the target has been found
+        print(env.target_found())
+
+        # image of the current frame from the agent - numpy array of shape (300,300,3) in RGB order
+        image = event.frame
+
+        # True/False whether the last action was successful.  Actions will fail if you attempt to move into a wall or
+        # LookUp/Down beyond the allowed range.
+        print(event.metadata['lastActionSuccess'])
+
+</code></pre>
+The structure of the target definition:
+<pre><code>{
+        "agentPositionIndex": 102,	# corresponds to a point on the grid
+        "sceneIndex": 0,  # which configuration for the scene (0-4)
+        "sceneName": "FloorPlan1",  # the name of the scene
+        "startingHorizon": 330.0,  # starting camera horizon (up,down) in degrees of the agent's camera
+        "startingRotation": 90.0,  # global rotation of the agent
+        "targetAgentHorizon": 60.0,  # where agent should be looking to see the target object
+        "targetAgentRotation": 180.0,  # how the agent should be rotated to see the target object
+        "targetImage": "images/FloorPlan1/spoon.png",  # path to image file that shows the target image
+        "targetObjectId": "Spoon|-01.73|+00.90|-00.95",  # internal id of the target object
+        "targetPosition": {
+            "x": -0.6949999928474426,
+            "y": 0.9800000190734863,
+            "z": -1.7799999713897705
+        },  # final position to see the target object
+        "uuid": "a27cb81c-5f68-4f90-80e8-e01e49ab188d"  # unique identifier for the task
+    },
+</code></pre>
+<p>
+	The final test set will be made available on _inset data here_.
+</p>

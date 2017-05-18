@@ -1,0 +1,2 @@
+command: python $program/evaluate.py $input $output
+description: Updated competition evaluation program that 4x errors.

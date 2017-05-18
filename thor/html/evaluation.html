@@ -1,0 +1,37 @@
+<H3>Evaluation Criteria</H3>
+<p>	The evaluation score is calculated as the average of the optimum number of
+	actions (o<sub>t</sub>) over the predicted set of actions (p<sub>t</sub>) over all the tasks:
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/thor/evaluation.gif"/>
+	<br>
+	If the predicted set of	actions do not place the agent in the correct location for a task, the score for that
+	task will be zero. The tasks include finding objects in different configurations of a scene from different
+	starting locations.
+</p>
+<H4>Submission Format</H4>
+<br>
+<p> The participants should submit a file that includes the taken actions. The code below
+	shows how to use the API. While running against the validation scenes, the
+	target_found() method will never return True. The agent must decide when it has reached
+	the goal and cease performing actions. Once the agent has iterated through all the
+	targets defined in the targets file, you can save the actions to a JSON file and submit
+	to the CodaLab challenge.</p>
+<pre><code>
+#!/usr/bin/env python
+import robosims
+import json
+env = robosims.controller.ChallengeController(
+    # Use unity_path=thor-201705011400-OSXIntel64.app/Contents/MacOS/thor-201705011400-OSXIntel64 for OSX
+    unity_path='projects/thor-201705011400-Linux64',
+    record_actions=True
+)
+env.start()
+with open("thor-challenge-targets/targets-val.json") as f:
+    t = json.loads(f.read())
+    for target in t:
+        env.initialize_target(target)
+        # navigate to the target
+        event = env.step(action=dict(action='MoveLeft'))
+
+    env.save_actions('submission-discrete.json')
+</code></pre>
